@@ -24,15 +24,24 @@ var OrderForm = React.createClass({
     });
 
     return (
-      <form>
-        <h1>Please Order Your Awesome Egg</h1>
+      <div className="container">
+        <div className="row">
+          <div className="md-col-6">
+            <form>
+              <h1>Please Order Your Awesome Egg</h1>
 
-        <input name="name" type="text" />
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" className="form-control" id="name" placeholder="Sir/Madam Your Name Please" />
+              </div>
 
-        <ul>
-          {eggOptionList}
-        </ul>
-      </form>
+              <ul>
+                {eggOptionList}
+              </ul>
+            </form>
+          </div>
+        </div>
+      </div>
     );
   }
 });
