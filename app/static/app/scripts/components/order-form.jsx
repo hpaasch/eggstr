@@ -43,8 +43,10 @@ var OrderForm = React.createClass({
     var eggOptionList = this.state.eggOptions.map(function(model){
       return (
         <li key={model.get('id')}>
-          <img src={model.get('image_url')} /> <br/>
-          <input onChange={self.handleEggOptionChange} type="radio" name="option" value={model.get('id')} />
+          <label htmlFor={model.get('id')}>
+              <img src={model.get('image_url')} /> <br/>
+              <input onChange={self.handleEggOptionChange} type="radio" name="option" id={model.get('id')} value={model.get('id')} />
+          </label>
         </li>
       );
     });

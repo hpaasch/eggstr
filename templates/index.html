@@ -9,7 +9,8 @@
     <body>
 
       <div id="container"></div>
-
+      {% csrf_token %}
+      
       <script src="{% static 'dist/js/bundle.js' %}"></script>
     </body>
 </html>
