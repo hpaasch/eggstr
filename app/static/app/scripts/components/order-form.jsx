@@ -17,12 +17,20 @@ var OrderForm = React.createClass({
   componentWillMount: function(){
     var self = this;
     var eggOptions = new models.EggOptionCollection();
+    var orders = this.state.orders;
 
-    //orders.fetch().done(function());
+    orders.fetch().done(function(){
+      self.setState({orders: orders});
+    });
+
+    orders.on('add', this.update);
 
     eggOptions.fetch().done(function(){
       self.setState({eggOptions: eggOptions});
     });
+  },
+  update: function(){
+    this.forceUpdate();
   },
   handleSubmit: function(e){
     e.preventDefault();
@@ -51,6 +59,10 @@ var OrderForm = React.createClass({
       );
     });
 
+    var orderList = this.state.orders.map(function(model){
+      return <li key={model.get('id')}>{model.get('name')}</li>
+    });
+
     return (
       <div className="container">
         <div className="row">
@@ -69,6 +81,11 @@ var OrderForm = React.createClass({
 
               <input className="btn btn-danger" type="submit" value="Place Your Order!" />
             </form>
+          </div>
+          <div className="md-col-6">
+            <ul>
+              {orderList}
+            </ul>
           </div>
         </div>
       </div>
